@@ -1,9 +1,17 @@
-const canvas1 = document.getElementById('canvas1')
+const canvas1 = document.getElementById('canvas')
 
 canvas1.width = window.innerWidth
 canvas1.height = window.innerHeight
 
 const context1 = canvas1.getContext('2d')
+
+const canvas2 = document.getElementById('canvas-top')
+
+canvas2.width = window.innerWidth
+canvas2.height = window.innerHeight
+
+const context2 = canvas2.getContext('2d')
+
 
 const image = new Image()
 image.src = 'https://cdn.glitch.me/8f207867-584a-4e33-ba8a-e5f07660b828%2F1.png?v=1636498924289'
@@ -33,19 +41,21 @@ canvas1.addEventListener('mousedown', evt => {
 })
 
 const render = () => {
-  context1.clearRect(state.scanX, 0, canvas1.width, canvas1.height)
+  context1.clearRect(0, 0, canvas1.width, canvas1.height)
   context1.drawImage(image, state.imageX, state.imageY, state.width, state.height)
 
   
   if (state.scanning) {
     state.scanX += 2
-    context1.strokeStyle = 'black'
-    context1.strokeWidth = 1
-    context1.beginPath()
-    context1.moveTo(state.scanX, 0)
-    context1.lineTo(state.scanX, canvas1.height)
-    context1.stroke()  
-    context1.drawImage(
+    
+    // context2.strokeStyle = 'black'
+    // context2.strokeWidth = 1
+    // context2.beginPath()
+    // context2.moveTo(state.scanX, 0)
+    // context2.lineTo(state.scanX, canvas1.height)
+    // context2.stroke()  
+    
+    context2.drawImage(
       canvas1, 
       0, // source X start
       0,  // source Y start
