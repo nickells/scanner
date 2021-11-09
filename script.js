@@ -26,13 +26,27 @@ canvas.addEventListener('mousemove', evt => {
   
 })
 
+
 canvas.addEventListener('mousedown', evt => {
-  
+  state.scanning = true
+  state.scanX = 0
 })
 
 const render = () => {
   context.clearRect(0, 0, canvas.width, canvas.height)
   context.drawImage(image, state.imageX, state.imageY, state.width, state.height)
+  
+  if (state.scanning) {
+    state.scanX += 2
+    context.strokeStyle = 'black'
+    context.strokeWidth = 1
+    context.beginPath()
+    context.moveTo(state.scanX, 0)
+    context.lineTo(state.scanX, canvas.height)
+    context.stroke()  
+    context.drawImage(canvas, 0, 0, state.scanX, canvas.height)
+  }
+  
   requestAnimationFrame(render)
 }
 
