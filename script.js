@@ -14,7 +14,7 @@ const context2 = canvas2.getContext('2d')
 
 
 const image = new Image()
-image.src = 'https://cdn.glitch.me/8f207867-584a-4e33-ba8a-e5f07660b828%2F1.png?v=1636498924289'
+image.src = 'https://cdn.glitch.me/1be3bc59-b422-4635-9476-f11ca80a5d2a%2Fnick.jpg?v=1636743423676'
 
 const scanner = document.getElementById('scanner')
 
@@ -46,7 +46,7 @@ document.addEventListener('keydown', evt => {
     if (state.scanning === false) {
       state.scanning = true
       
-      if (state.scanX > canvas1.width) {
+      if (state.scanX >= canvas1.width) {
         state.scanX = 0;
         context1.clearRect(0, 0, canvas1.width, canvas1.height)
         context2.clearRect(0, 0, canvas1.width, canvas1.height)
