@@ -22,31 +22,39 @@ image.addEventListener('load', evt => {
   state.height = image.height / 2
 })
 
-canvas1.addEventListener('mousemove', evt => {
-  const x = evt.clientX
-  const y = evt.clientY
+// canvas1.addEventListener('mousemove', evt => {
+//   const x = evt.clientX
+//   const y = evt.clientY
   
   
-  const imageX = x - (state.width / 2)
-  const imageY = y - (state.height / 2 )
-  state.imageX = imageX
-  state.imageY = imageY
+//   const imageX = x - (state.width / 2)
+//   const imageY = y - (state.height / 2 )
+//   state.imageX = imageX
+//   state.imageY = imageY
   
-})
+// })
 
 
 canvas1.addEventListener('mousedown', evt => {
   state.scanning = true
   state.scanX = 0
+  context1.clearRect(0, 0, canvas1.width, canvas1.height)
+  context2.clearRect(0, 0, canvas1.width, canvas1.height)
+
 })
 
 const render = () => {
   context1.clearRect(0, 0, canvas1.width, canvas1.height)
+  
+  // draws on first image
   context1.drawImage(image, state.imageX, state.imageY, state.width, state.height)
 
+  // context2.clearRect(state.scanX, 0, canvas2.width, canvas2.height)
   
   if (state.scanning) {
     state.scanX += 2
+    
+    document.getElementById('scanner').style.position.left = state.scanX + 'px'
     
     // context2.strokeStyle = 'black'
     // context2.strokeWidth = 1
@@ -55,15 +63,16 @@ const render = () => {
     // context2.lineTo(state.scanX, canvas1.height)
     // context2.stroke()  
     
+    // keep contents of first image on second image
     context2.drawImage(
       canvas1, 
-      0, // source X start
+      state.scanX, // source X start
       0,  // source Y start
-      state.scanX, // source width
+      2, // source width
       canvas1.height, // source height
-      0, // destination X start
+      state.scanX, // destination X start
       0, // destination Y start
-      state.scanX, // destination width
+      2, // destination width
       canvas1.height) // destination height
   }
     

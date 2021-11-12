@@ -12,3 +12,18 @@ canvas {
 #canvas-top {
   pointer-events: none;
 }
+
+body {
+  background: #222;
+  margin: 0;
+  padding: 0;
+}
+
+#scanner {
+  position: absolute;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  width: 2px;
+  box-shadow: 10px 0px 20px #fff;
+}
