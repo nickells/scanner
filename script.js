@@ -30,15 +30,23 @@ image.addEventListener("load", evt => {
   (state.width = image.width / 2), (state.height = image.height / 2);
 });
 
+let mouseCoords = ({x: 0, y: 0})
+const mouseTween = new tween.tween((mouseCoords)).start()
+
 canvas1.addEventListener("mousemove", evt => {
   const x = evt.clientX;
   const y = evt.clientY;
 
-  const imageX = x - state.width / 2;
-  const imageY = y - state.height / 2;
+
+  mouseTween.to({x, y}, 100)
+});
+
+mouseTween.onUpdate(() => {
+  const imageX = mouseCoords.x - state.width / 2;
+  const imageY = mouseCoords.y - state.height / 2;
   state.imageX = imageX;
   state.imageY = imageY;
-});
+})
 
 document.addEventListener("keydown", evt => {
   if (evt.code === "Space") {
@@ -57,6 +65,7 @@ document.addEventListener("keydown", evt => {
     }
   }
 });
+
 
 const scan_width = 1;
 
