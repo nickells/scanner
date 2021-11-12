@@ -111,17 +111,3 @@ const render = () => {
 }
 
 render()
-
-// get current size of the canvas
-let rect = canvas.getBoundingClientRect();
-
-// increase the actual size of our canvas
-canvas.width = rect.width * devicePixelRatio;
-canvas.height = rect.height * devicePixelRatio;
-
-// ensure all drawing operations are scaled
-context.scale(devicePixelRatio, devicePixelRatio);
-
-// scale everything down using CSS
-canvas.style.width = rect.width + 'px';
-canvas.style.height = rect.height + 'px';
