@@ -21,6 +21,7 @@ const scanner = document.getElementById('scanner')
 let state = {
   scanX: 0,
   done: false,
+  scanning: false,
 }
 image.addEventListener('load', evt => {
   state.width = image.width / 2,
@@ -68,7 +69,13 @@ const render = () => {
   
   // draws on first image
   context1.clearRect(0, 0, canvas1.width, canvas1.height)
-  context1.drawImage(image, state.imageX, state.imageY, state.width, state.height)
+  context1.drawImage(
+    image, 
+    state.imageX,
+    state.imageY,
+    state.width,
+    state.height,
+  )
 
   // context2.clearRect(state.scanX, 0, canvas2.width, canvas2.height)
   
@@ -104,3 +111,17 @@ const render = () => {
 }
 
 render()
+
+// get current size of the canvas
+let rect = canvas.getBoundingClientRect();
+
+// increase the actual size of our canvas
+canvas.width = rect.width * devicePixelRatio;
+canvas.height = rect.height * devicePixelRatio;
+
+// ensure all drawing operations are scaled
+context.scale(devicePixelRatio, devicePixelRatio);
+
+// scale everything down using CSS
+canvas.style.width = rect.width + 'px';
+canvas.style.height = rect.height + 'px';
