@@ -18,7 +18,10 @@ image.src = 'https://cdn.glitch.me/8f207867-584a-4e33-ba8a-e5f07660b828%2F1.png?
 
 const scanner = document.getElementById('scanner')
 
-let state = {}
+let state = {
+  scanX: 0,
+  done: false,
+}
 image.addEventListener('load', evt => {
   state.width = image.width / 2,
   state.height = image.height / 2
@@ -39,12 +42,16 @@ canvas1.addEventListener('mousemove', evt => {
 
 document.addEventListener('keydown', evt => {
   if (evt.code === 'Space') {
+    
     if (state.scanning === false) {
-      state.scanning = true 
-      context1.clearRect(0, 0, canvas1.width, canvas1.height)
-      context2.clearRect(0, 0, canvas1.width, canvas1.height)
+      state.scanning = true
+      
       if (state.scanX > canvas1.width) {
         state.scanX = 0;
+        context1.clearRect(0, 0, canvas1.width, canvas1.height)
+        context2.clearRect(0, 0, canvas1.width, canvas1.height)
+        canvas2.style.pointerEvents = 'none'
+        canvas1.style.pointerEvents = 'all'
       }
     }
     else {
@@ -58,9 +65,9 @@ const scan_width = 2
 
 
 const render = () => {
-  context1.clearRect(0, 0, canvas1.width, canvas1.height)
   
   // draws on first image
+  context1.clearRect(0, 0, canvas1.width, canvas1.height)
   context1.drawImage(image, state.imageX, state.imageY, state.width, state.height)
 
   // context2.clearRect(state.scanX, 0, canvas2.width, canvas2.height)
@@ -81,6 +88,14 @@ const render = () => {
       0, // destination Y start
       scan_width, // destination width
       canvas1.height) // destination height
+  }
+  
+  if (state.scanX >= canvas1.width) {
+    state.scanning = false;
+    state.done = true;
+    canvas1.style.pointerEvents = 'none'
+    canvas2.style.pointerEvents = 'all'
+    context1.clearRect(0, 0, canvas1.width, canvas1.height)
   }
     
     
