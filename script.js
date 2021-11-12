@@ -31,22 +31,24 @@ image.addEventListener("load", evt => {
 });
 
 let mouseCoords = ({x: 0, y: 0})
-const mouseTween = new tween.tween((mouseCoords)).start()
 
 canvas1.addEventListener("mousemove", evt => {
   const x = evt.clientX;
   const y = evt.clientY;
 
-
-  mouseTween.to({x, y}, 100)
+  const mouseTween = new tween.Tween(mouseCoords) // Create a new tween that modifies 'coords'.
+	.to({x, y}, 100) // Move to (300, 200) in 1 second.
+	.onUpdate(() => {
+		// Called after tween.js updates 'coords'.
+		// Move 'box' to the position described by 'coords' with a CSS translation.
+    const imageX = mouseCoords.x - state.width / 2;
+    const imageY = mouseCoords.y - state.height / 2;
+    state.imageX = imageX;
+    state.imageY = imageY;
+	})
+	.start() // Start the tween immediately.
 });
 
-mouseTween.onUpdate(() => {
-  const imageX = mouseCoords.x - state.width / 2;
-  const imageY = mouseCoords.y - state.height / 2;
-  state.imageX = imageX;
-  state.imageY = imageY;
-})
 
 document.addEventListener("keydown", evt => {
   if (evt.code === "Space") {
