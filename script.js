@@ -62,7 +62,7 @@ document.addEventListener('keydown', evt => {
   }
 })
 
-const scan_width = 2
+const scan_width = 1
 
 
 const render = () => {
@@ -84,7 +84,7 @@ const render = () => {
     
     scanner.style.left = state.scanX + 'px'
     
-    // keep contents of first image on second image
+    // keep contents of fi rst image on second image
     context2.drawImage(
       canvas1, 
       state.scanX, // source X start
