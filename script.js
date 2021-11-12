@@ -16,32 +16,46 @@ const context2 = canvas2.getContext('2d')
 const image = new Image()
 image.src = 'https://cdn.glitch.me/8f207867-584a-4e33-ba8a-e5f07660b828%2F1.png?v=1636498924289'
 
+const scanner = document.getElementById('scanner')
+
 let state = {}
 image.addEventListener('load', evt => {
   state.width = image.width / 2,
   state.height = image.height / 2
 })
 
-// canvas1.addEventListener('mousemove', evt => {
-//   const x = evt.clientX
-//   const y = evt.clientY
+canvas1.addEventListener('mousemove', evt => {
+  const x = evt.clientX
+  const y = evt.clientY
   
   
-//   const imageX = x - (state.width / 2)
-//   const imageY = y - (state.height / 2 )
-//   state.imageX = imageX
-//   state.imageY = imageY
+  const imageX = x - (state.width / 2)
+  const imageY = y - (state.height / 2 )
+  state.imageX = imageX
+  state.imageY = imageY
   
-// })
-
-
-canvas1.addEventListener('mousedown', evt => {
-  state.scanning = true
-  state.scanX = 0
-  context1.clearRect(0, 0, canvas1.width, canvas1.height)
-  context2.clearRect(0, 0, canvas1.width, canvas1.height)
-
 })
+
+
+document.addEventListener('keydown', evt => {
+  if (evt.code === 'Space') {
+    if (state.scanning === false) {
+      state.scanning = true 
+      context1.clearRect(0, 0, canvas1.width, canvas1.height)
+      context2.clearRect(0, 0, canvas1.width, canvas1.height)
+      if (state.scanX > canvas1.width) {
+        state.scanX = 0;
+      }
+    }
+    else {
+      state.scanning = false;
+    }
+    
+  }
+})
+
+const scan_width = 2
+
 
 const render = () => {
   context1.clearRect(0, 0, canvas1.width, canvas1.height)
@@ -52,27 +66,20 @@ const render = () => {
   // context2.clearRect(state.scanX, 0, canvas2.width, canvas2.height)
   
   if (state.scanning) {
-    state.scanX += 2
+    state.scanX += scan_width
     
-    document.getElementById('scanner').style.position.left = state.scanX + 'px'
-    
-    // context2.strokeStyle = 'black'
-    // context2.strokeWidth = 1
-    // context2.beginPath()
-    // context2.moveTo(state.scanX, 0)
-    // context2.lineTo(state.scanX, canvas1.height)
-    // context2.stroke()  
+    scanner.style.left = state.scanX + 'px'
     
     // keep contents of first image on second image
     context2.drawImage(
       canvas1, 
       state.scanX, // source X start
       0,  // source Y start
-      2, // source width
+      scan_width, // source width
       canvas1.height, // source height
       state.scanX, // destination X start
       0, // destination Y start
-      2, // destination width
+      scan_width, // destination width
       canvas1.height) // destination height
   }
     
