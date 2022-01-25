@@ -14,7 +14,7 @@ const context2 = canvas2.getContext('2d')
 
 
 const image = new Image()
-image.src = 'https://cdn.glitch.me/1be3bc59-b422-4635-9476-f11ca80a5d2a%2F65020957073__D12BD835-7D7B-4A78-942C-B32EB7F109B2.jpg?v=1636751130622'
+image.src = 'https://cdn.glitch.global/1be3bc59-b422-4635-9476-f11ca80a5d2a/Screen%20Shot%202022-01-25%20at%204.10.20%20PM.png?v=1643145031138'
 
 const scanner = document.getElementById('scanner')
 
