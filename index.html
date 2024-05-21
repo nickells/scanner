@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
 
-
-    <title>Hello World!</title>
-
+    <title>Scan toy</title>
 
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
@@ -19,18 +17,16 @@
     <div class="container">
       <canvas id="canvas"></canvas>
       <canvas id="canvas-top"></canvas>
-      <div id="scanner">
-        
-      </div>
+      <div id="scanner"></div>
       <div id="instructions">
-        Press [space] to begin and again to pause.<br>
-        You can right-click + save the image when it's done!<br>
-        For now, you can only use this photo of my dog.
+        Press [space] to begin and again to pause.
+        <br />
+        <input type="file" id="fileInput" style="display: none" />
+        <button id="upload">Choose file</button>
+
+        <button id="download">Download</button>
+        <button id="reset">Reset</button>
       </div>
-      <button id="file">
-        Choose file
-      </button>
     </div>
-    
   </body>
 </html>
