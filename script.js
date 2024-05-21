@@ -84,7 +84,7 @@ const render = () => {
     
     scanner.style.left = state.scanX + 'px'
     
-    // keep contents of fi rst image on second image
+    // keep contents of first image on second image
     context2.drawImage(
       canvas1, 
       state.scanX, // source X start
