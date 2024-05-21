@@ -16,7 +16,7 @@ const image = new Image();
 image.crossOrigin = "anonymous";
 
 image.src =
-  "https://cdn.glitch.global/1be3bc59-b422-4635-9476-f11ca80a5d2a/Screen%20Shot%202022-01-25%20at%204.10.20%20PM.png?v=1643145031138";
+  "https://cdn.glitch.global/1be3bc59-b422-4635-9476-f11ca80a5d2a/640px-Cat_August_2010-4.jpg?v=1716261807039";
 
 const scanner = document.getElementById("scanner");
 
@@ -149,3 +149,5 @@ const render = () => {
 };
 
 render();
+
+document.getElementById('year').innerText = new Date().getFullYear();

@@ -34,12 +34,24 @@ body {
 #instructions {
   padding: 10px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 1);
 }
 
 button {
   font-family: monospace;
   margin-top: 5px;
+}
+
+.nick {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 10px;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 1);
+}
+
+.nick a {
+  color: white;
 }
