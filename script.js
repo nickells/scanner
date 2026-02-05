@@ -16,7 +16,7 @@ const image = new Image();
 image.crossOrigin = "anonymous";
 
 image.src =
-  "https://cdn.glitch.global/1be3bc59-b422-4635-9476-f11ca80a5d2a/640px-Cat_August_2010-4.jpg?v=1716261807039";
+  "https://media.istockphoto.com/id/1385217969/photo/ginger-cat-walks.jpg?s=612x612&w=0&k=20&c=mBhFzDA2dp23dV4jq6FooaSzG2tmCZMKP6TV56hMVII=";
 
 const scanner = document.getElementById("scanner");
 
